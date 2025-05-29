@@ -31,35 +31,43 @@ document.addEventListener('DOMContentLoaded', () => {
         setState({countParty1,countParty2,countParty });
     }
 
-
     updateDisplay(state);
 
     subscribe(event => {
         const data = event.data;
+        let doTeams = false;
+        let doCount = false;
+        let doParty = false;
 
         switch (data.type) {
             case 'TIMER':
-                state.pause = false;
+                state.pause   = false;
                 state.minutes = data.minutes;
                 state.seconds = data.seconds;
                 break;
 
             case 'COUNT':
-                const key = data.id === 'counter1' ? 'count1': 'count2';
+                const key = data.id === 'counter1' ? 'count1' : 'count2';
                 state[key] = data.value;
+                doCount = true;
                 break;
 
             case 'PARTY':
-                state[data.id==='incPartyBtn1'?'countParty1':'countParty2'] = data.value;
+                state[
+                    data.id === 'incPartyBtn1' ? 'countParty1' : 'countParty2'
+                    ] = data.value;
+                doParty = true;
                 break;
 
             case 'NEXT_PARTY':
                 state.countParty = data.value;
+                doParty = true;
                 break;
 
             case 'RESET':
                 state.count1 = data.value.count1;
                 state.count2 = data.value.count2;
+                doCount = true;
                 break;
 
             case 'SHOW_PAUSE':
@@ -67,19 +75,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
 
             case 'SELECT_TEAMS':
-                console.log({state})
                 state[data.key] = data.value;
+                // **тут не просимо нову подію SELECT_TEAMS**
                 break;
 
             case 'RESET_ALL':
-                setState(data.value)
+                setState(data.value);
+                doTeams = doCount = doParty = true;
                 break;
         }
 
-        requestSelectedTeams()
-        requestCount()
-        requestParty()
-    })
+        // після switch – оновлюємо лише потрібні запити
+        if (doTeams) requestSelectedTeams();
+        if (doCount) doCount && requestCount();
+        if (doParty) requestParty();
+
+        // і не забуваємо оновити UI
+        updateDisplay(state);
+    });
 
     document.getElementById('startBtn')?.addEventListener('click', Timer.startTimer);
     document.getElementById('stopBtn')?.addEventListener('click', Timer.stopTimer);
