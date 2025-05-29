@@ -21,8 +21,8 @@ export function decrementCounter(id) {
     postMessage({type:'COUNT', id, value: id === 'counter1' ? state.count1 : state.count2 })
 
     localStorage.setItem('counts', JSON.stringify({
-        count1: state.count1 ?? null,
-        count2: state.count2 ?? null,
+        count1: state.count1 ?? 0,
+        count2: state.count2 ?? 0,
     }));
 }
 
@@ -37,9 +37,9 @@ export function incrementCounterParty(id) {
     });
 
     localStorage.setItem('party', JSON.stringify({
-        countParty1: state.countParty1 ?? null,
-        countParty2: state.countParty2 ?? null,
-        countParty : state.countParty ?? null,
+        countParty1: state.countParty1 ?? 0,
+        countParty2: state.countParty2 ?? 0,
+        countParty : state.countParty ?? 0,
     }));
 }
 
@@ -54,9 +54,9 @@ export function decrementCounterParty(id) {
     });
 
     localStorage.setItem('party', JSON.stringify({
-        countParty1: state.countParty1 ?? null,
-        countParty2: state.countParty2 ?? null,
-        countParty : state.countParty ?? null,
+        countParty1: state.countParty1 ?? 0,
+        countParty2: state.countParty2 ?? 0,
+        countParty : state.countParty ?? 1,
     }));
 }
 
@@ -70,14 +70,14 @@ export function nextParty() {
     postMessage({type: 'RESET', value: { count1: 0, count2: 0 }});
 
     localStorage.setItem('counts', JSON.stringify({
-        count1: 0 ?? null,
-        count2: 0 ?? null,
+        count1: 0 ?? 0,
+        count2: 0 ?? 0,
     }));
 
     localStorage.setItem('party', JSON.stringify({
-        countParty1: state.countParty1 ?? null,
-        countParty2: state.countParty2 ?? null,
-        countParty : state.countParty ?? null,
+        countParty1: state.countParty1 ?? 0,
+        countParty2: state.countParty2 ?? 0,
+        countParty : state.countParty ?? 1,
     }));
 }
 

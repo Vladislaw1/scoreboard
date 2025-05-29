@@ -1,6 +1,13 @@
 import {state, setState, initialState} from './state.js';
 import { initUI, updateDisplay,renderTeamList } from './ui.js';
-import {requestCount, requestParty, requestSelectedTeams, subscribe} from './broadcast.js';
+import {
+    handleBroadcast,
+    requestCount,
+    requestParty,
+    requestSelectedTeams,
+    subscribe,
+    unsubscribe
+} from './broadcast.js';
 
 import { selectTeam } from './selectTeam.js';
 
@@ -11,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initUI();
     updateDisplay(state)
     renderTeamList(selectTeam);
+
+    unsubscribe(handleBroadcast);
 
     const saved = localStorage.getItem('selectedTeams');
     const savedCounts = localStorage.getItem('counts');
@@ -33,66 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateDisplay(state);
 
-    subscribe(event => {
-        const data = event.data;
-        let doTeams = false;
-        let doCount = false;
-        let doParty = false;
-
-        switch (data.type) {
-            case 'TIMER':
-                state.pause   = false;
-                state.minutes = data.minutes;
-                state.seconds = data.seconds;
-                break;
-
-            case 'COUNT':
-                const key = data.id === 'counter1' ? 'count1' : 'count2';
-                state[key] = data.value;
-                doCount = true;
-                break;
-
-            case 'PARTY':
-                state[
-                    data.id === 'incPartyBtn1' ? 'countParty1' : 'countParty2'
-                    ] = data.value;
-                doParty = true;
-                break;
-
-            case 'NEXT_PARTY':
-                state.countParty = data.value;
-                doParty = true;
-                break;
-
-            case 'RESET':
-                state.count1 = data.value.count1;
-                state.count2 = data.value.count2;
-                doCount = true;
-                break;
-
-            case 'SHOW_PAUSE':
-                state.pause = true;
-                break;
-
-            case 'SELECT_TEAMS':
-                state[data.key] = data.value;
-                // **тут не просимо нову подію SELECT_TEAMS**
-                break;
-
-            case 'RESET_ALL':
-                setState(data.value);
-                doTeams = doCount = doParty = true;
-                break;
-        }
-
-        // після switch – оновлюємо лише потрібні запити
-        if (doTeams) requestSelectedTeams();
-        if (doCount) doCount && requestCount();
-        if (doParty) requestParty();
-
-        // і не забуваємо оновити UI
-        updateDisplay(state);
-    });
+    subscribe(handleBroadcast);
 
     document.getElementById('startBtn')?.addEventListener('click', Timer.startTimer);
     document.getElementById('stopBtn')?.addEventListener('click', Timer.stopTimer);
@@ -117,3 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('newMatch')?.addEventListener('click', () => { Counter.resetAll(); updateDisplay(state); });
 
 })
+
+window.addEventListener('beforeunload', () => {
+    unsubscribe(handleBroadcast);
+});

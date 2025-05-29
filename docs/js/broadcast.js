@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import {updateDisplay} from "./ui.js";
 
 export const channel  = new BroadcastChannel('app-channel');
 
@@ -10,7 +11,9 @@ export function subscribe(handler) {
     channel.addEventListener('message', handler);
 }
 
-channel.addEventListener('message', event => {
+
+
+function internalHandler(event) {
     if (event.data.type === 'REQUEST_SELECTED_TEAMS') {
         channel.postMessage({
             type: 'SELECT_TEAMS',
@@ -34,6 +37,15 @@ channel.addEventListener('message', event => {
             countParty2: state.countParty2 ?? 0,
         });
     }
+}
+
+export const internalBroadcastHandler = internalHandler;
+
+channel.addEventListener('message', internalBroadcastHandler);
+
+window.addEventListener('beforeunload', () => {
+    channel.removeEventListener('message', internalBroadcastHandler);
+    channel.removeEventListener('message', subscribe);
 });
 
 export function unsubscribe(handler) {
@@ -50,4 +62,55 @@ export function requestCount() {
 
 export function requestParty() {
     channel.postMessage({ type: 'REQUEST_PARTY' });
+}
+
+export function handleBroadcast(event) {
+    const data = event.data;
+    let doTeams = false;
+    let doCount = false;
+    let doParty = false;
+
+    switch (data.type) {
+        case 'TIMER':
+            state.pause   = false;
+            state.minutes = data.minutes;
+            state.seconds = data.seconds;
+            break;
+
+        case 'COUNT':
+            const key = data.id === 'counter1' ? 'count1' : 'count2';
+            state[key] = data.value;
+            break;
+
+        case 'PARTY':
+            state[data.id === 'incPartyBtn1' ? 'countParty1' : 'countParty2'] = data.value;
+            break;
+
+        case 'NEXT_PARTY':
+            state.countParty = data.value;
+            break;
+
+        case 'RESET':
+            state.count1 = data.value.count1;
+            state.count2 = data.value.count2;
+            break;
+
+        case 'SHOW_PAUSE':
+            state.pause = true;
+            break;
+
+        case 'SELECT_TEAMS':
+            state[data.key] = data.value;
+            break;
+
+        case 'RESET_ALL':
+            setState(data.value);
+            break;
+    }
+
+    if (doTeams) requestSelectedTeams();
+    if (doCount) requestCount();
+    if (doParty) requestParty();
+
+    updateDisplay(state);
 }
