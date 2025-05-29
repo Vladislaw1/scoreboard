@@ -1,0 +1,215 @@
+body{
+    font-family: "WDXL Lubrifont TC", sans-serif;
+    background: url("../assets/images/bg/bg_grey.jpg") no-repeat ;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    border: 1px solid #5a5a5a;
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.11);
+        color: white;
+    }
+}
+
+p{
+    margin: 0;
+}
+
+.wrapper{
+    display: flex;
+    gap: 20px
+}
+.wrapper__controller{
+    color: white;
+    background: rgba(0, 0, 0, 0.38);
+    border-radius: 10px;
+    height: 35vh;
+    width: 20vw;
+}
+
+.header__block{
+    background: rgba(0, 0, 0, 0.56);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.count__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: url("../assets/images/bg/bg_manage_count.jpg") no-repeat center;
+    background-size: cover;
+    font-size: 50px;
+    width: 95vw;
+    height: 15vh;
+    border-radius: 3vw;
+    border: 1px solid black;
+
+    & > .timer {
+        display: flex;
+        font-size: 30px;
+    }
+
+    & > p {
+        display: flex;
+        font-size: 30px;
+        color: brown;
+    }
+
+}
+
+.count{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+
+    & > p {
+        width: 3vw;
+        text-align: center;
+    }
+
+    & > div {
+        text-align: center;
+        width: 30vw;
+    }
+}
+
+.content__block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+}
+
+.caption__controller{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.btn__controller{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: darkgreen;
+
+    transition:all 0.2s ease-in-out;
+
+    &:hover{
+        cursor: pointer;
+        background: limegreen;
+    }
+
+    &.start {
+        background-color: darkgreen;
+
+        &:hover{
+            cursor: pointer;
+            background: limegreen;
+        }
+    }
+    &.pause {
+        background: blue;
+
+        &:hover{
+            cursor: pointer;
+            background: dodgerblue;
+        }
+    }
+    &.stop , &.dic {
+        background: darkred;
+
+        &:hover{
+            cursor: pointer;
+            background: red;
+        }
+    }
+}
+
+.account__controller{}
+
+.party__controller{}
+
+.timer__controller{}
+
+.party__list{
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+    border: 1px solid black;
+    padding: 0;
+    margin: 0;
+
+    & > li {
+        padding: 10px;
+        &:hover{
+            background: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            color: white;
+        }
+
+        &.selected{
+            font-weight: bold;
+            color: green;
+        }
+
+        &.disabled{
+            color: silver;
+        }
+    }
+}
+
+.wrapper__lists{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 20px;
+
+    border: 1px solid black;
+    border-radius: 1vw;
+
+    & > h3{
+        margin: 0;
+    }
+
+    & > .lists {
+        display: flex;
+        gap: 20px
+    }
+}
+
+
+
+.management{
+    display: flex;
+    gap:10px;
+    justify-content: space-between;
+    align-items: center;
+}

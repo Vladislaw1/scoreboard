@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage</title>
+    <link rel="stylesheet" href="../css/manage.css"/>
+</head>
+<body id="body_manage">
+    <div class="count__wrapper">
+
+        <div class="timer" id="timer-wrapper">
+            <p class="minute" id="minute">00</p>
+            <p class="dots" id="dots">:</p>
+            <p class="second" id="second">00</p>
+        </div>
+
+        <div class="count">
+            <div>
+                <div class="name-wrapper" id="name-wrapper1">
+                    <p class="name" id="name1">ЦА ДБР</p>
+                </div>
+            </div>
+            <p class="counter__value" id="counter1">0</p>
+            <p>-</p>
+            <p class="counter__value" id="counter2">0</p>
+            <div>
+                <div class="name-wrapper" id="name-wrapper2">
+                    <p class="name" id="name2"></p>
+                </div>
+            </div>
+        </div>
+
+        <p>П: <span class="party__value" id="number__party-value">0</span></p>
+    </div>
+
+    <a href="./board.html" target='_blank'>Відкрити Табло</a>
+
+    <div class="wrapper">
+        <div class="wrapper__controller">
+
+            <div class="header__block">
+                <p class="caption__controller">Керування балами</p>
+            </div>
+
+            <div class="content__block">
+                <p>Кількість забитих голів першої команди</p>
+                <div class="management">
+                    <button id="dic1" class="btn__controller dic">Відняти гол першій команді</button>
+                    <button id="inc1" class="btn__controller inc">Додати гол першій команді</button>
+                </div>
+
+                <p>Кількість забитих голів другої команди</p>
+                <div class="management">
+                    <button id="dic2" class="btn__controller dic">Відняти гол другій команді</button>
+                    <button id="inc2" class="btn__controller inc">Додати гол другій команді</button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="wrapper__controller">
+
+            <div class="header__block">
+                <p class="caption__controller">Керування партіями</p>
+            </div>
+
+            <div class="content__block">
+                <p>Кількість виграних партій першої команди</p>
+                <div class="management">
+                    <button id="decPartyBtn1" class="btn__controller dic">-</button>
+                    <p class="party__count-value" id="party__count1">0</p>
+                    <button id="incPartyBtn1" class="btn__controller">+</button>
+                </div>
+
+                <p>Кількість виграних партій другої команди</p>
+                <div class="management">
+                    <button id="decPartyBtn2" class="btn__controller dic">-</button>
+                    <p class="party__count-value" id="party__count2">0</p>
+                    <button id="incPartyBtn2" class="btn__controller">+</button>
+                </div>
+
+                <p>Партія</p>
+                <div class="management">
+                    <button id="decParty" class="btn__controller dic">Зменшити партію</button>
+                    <button id="incParty" class="btn__controller">Збільшити партію</button>
+                </div>
+
+
+                <p>Новий матч</p>
+                <button id="newMatch" class="btn__controller dic">Новий матч</button>
+            </div>
+
+        </div>
+
+        <div class="wrapper__controller">
+
+            <div class="header__block">
+                <p class="caption__controller">Керування часом партії</p>
+            </div>
+
+            <div class="content__block">
+                <button id="startBtn" class="btn__controller start">Розпочати партію</button>
+                <button id="pauseBtn" class="btn__controller pause">Пауза</button>
+                <button id="stopBtn" class="btn__controller stop">Закінчити партію</button>
+            </div>
+
+        </div>
+
+        <div class="wrapper__lists">
+            <h3>Вибір команд</h3>
+
+            <div class="lists">
+                <div>
+                    <h4>Оберіть першу команду</h4>
+                    <ul id="team-list1" class="party__list">
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Оберіть другу команду</h4>
+                    <ul id="team-list2" class="party__list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Волейбол</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="board">
+
+        <!--        TEAM-1              -->
+        <div class="team1">
+            <!--        НАЗВА/ІКОНКА КОМАНДИ              -->
+            <div class="name-wrapper" id="name-wrapper1">
+                <img id="logo__team1" src="" alt="team1" width="300" height="300"/>
+                <p class="name" id="name1">ЦА ДБР</p>
+            </div>
+
+            <!--        РАХУНОК               -->
+            <div class="counter-wrapper" id="counter-wrapper1">
+                <p class="caption">Рахунок</p>
+                <div class="counter">
+                    <p class="counter__value"  id="counter1">0</p>
+                </div>
+            </div>
+
+            <!--        РАХУНОК ПО ПАРТІЯХ              -->
+            <div class="account__party-wrapper" id="account__party-wrapper1">
+                <p class="caption">Рахунок по партіям</p>
+                <div class="party__count">
+                    <p class="party__count-value" id="party__count1">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!--        TIMER -1              -->
+       <div class="time">
+           <div class="show__time">
+               <p class="time__caption">Час</p>
+               <div class="timer" id="timer-wrapper">
+                   <p class="minute" id="minute">00</p>
+                   <p class="dots" id="dots">:</p>
+                   <p class="second" id="second">00</p>
+               </div>
+           </div>
+
+           <div class="show__pause">
+               <div class="show__pause" id="show__pause-wrapper">
+                   <p class="pause" id="show__pause-value"></p>
+               </div>
+           </div>
+
+           <div class="number__party">
+               <p class="">Партія</p>
+               <div class="party" id="number__party-wrapper">
+                   <p class="party__value" id="number__party-value">0</p>
+               </div>
+           </div>
+       </div>
+
+        <!--        TEAM-2              -->
+        <div class="team2">
+            <!--        НАЗВА/ІКОНКА КОМАНДИ              -->
+            <div class="name-wrapper" id="name-wrapper2">
+                <img id="logo__team2" src="" alt="team1" width="300" height="300"/>
+                <p class="name" id="name2">ТУ КИЇВ</p>
+            </div>
+
+            <!--        РАХУНОК               -->
+            <div class="counter-wrapper" id="counter-wrapper2">
+                <p class="caption">Рахунок</p>
+                <div class="counter">
+                    <p class="counter__value"  id="counter2">0</p>
+                </div>
+            </div>
+
+            <!--        РАХУНОК ПО ПАРТІЯХ              -->
+            <div class="account__party-wrapper" id="account__party-wrapper2">
+                <p class="caption">Рахунок по партіям</p>
+                <div class="party__count">
+                    <p class="party__count-value" id="party__count2">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>

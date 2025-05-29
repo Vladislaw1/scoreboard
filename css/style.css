@@ -1,0 +1,163 @@
+:root {
+    /* шрифт мінімум 8rem, максимум 15rem, в ідеалі 20vw */
+    --size_number: clamp(8rem, 20vw, 15rem);
+    --size_text:   clamp(2rem, 10vw, 6rem);
+    --size_name:   clamp(2rem, 10vw, 4rem);
+    --size_time:   clamp(2rem, 5vw, 5rem);
+    --gap: 2vw;
+    --padding: 1.5vw;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "WDXL Lubrifont TC", sans-serif;
+    font-optical-sizing: auto;
+    background: url("../assets/images/bg/neonovyi-svetlyi-fon3.jpg") no-repeat center;
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+p{
+    margin: 0;
+    text-align: center;
+}
+
+.board{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+
+    padding: 20px;
+    gap: var(--gap);
+    background: rgba(0,0,0,0.5);
+    width: 60vw;
+    height: 80vh;
+    border-radius: 1vw;
+}
+
+.account{
+    display: flex;
+    justify-content: space-around;
+}
+
+.counter, .party__count{
+    width: 8vw;
+    background: rgba(255,255,255,0.2);
+    border-radius: 1vw;
+    display: flex;
+    justify-content: center;
+}
+
+.counter-wrapper, .account__party-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.counter__value, .party__count-value{
+    width: 80%;            /* заповнює 80% ширини контейнера */
+    aspect-ratio: 1 / 1;   /* квадратна форма */
+    display: flex;
+    align-items: center;
+    font-size: var(--size_text);
+    justify-content: center;
+    flex: 1 1 auto;
+}
+
+.parties{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.time{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    border-radius: 10px;
+    font-size: var(--size_time);
+    height: 100%;
+}
+
+.number__party{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer{
+    display: flex;
+    justify-content: center;
+    color: chocolate;
+    gap:5px;
+    border-radius: 10px;
+    width: 10vw;
+}
+
+.team1, .team2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.name{
+    font-size: var(--size_name);
+}
+
+.caption{
+    font-size: 2em;
+}
+
+.pause{
+    text-align: center;
+    color: red;
+    font-size: var(--size_text);
+    width: 15vw;
+}
+
+.show__pause{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.number__party{
+    flex: 1
+}
+
+.party__value{
+    font-size: 4rem;
+}
+
+.show__time{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.time__caption{
+    font-size: 0.6em;
+}
+
+.name-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 10vh;
+}
