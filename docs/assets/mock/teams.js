@@ -1,6 +1,6 @@
 export let Teams;
 Teams = [{
-    name: 'ЦА ДБР',
+    name: 'ЦА',
     logo: 'assets/images/teams/logo/2_120х137_-removebg-preview.png',
     id: 1
 }, {
