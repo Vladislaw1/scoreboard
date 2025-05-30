@@ -3,7 +3,7 @@ body{
     background: url("../assets/images/bg/bg_grey.jpg") no-repeat ;
     background-size: cover;
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -34,14 +34,17 @@ p{
 
 .wrapper{
     display: flex;
-    gap: 20px
+    justify-content: center;
+    gap: 20px;
 }
+
 .wrapper__controller{
     color: white;
     background: rgba(0, 0, 0, 0.38);
     border-radius: 10px;
-    height: 35vh;
+    max-height: 35vh;
     width: 20vw;
+    overflow: auto;
 }
 
 .header__block{
@@ -108,6 +111,7 @@ p{
 .caption__controller{
     font-weight: bold;
     font-size: 16px;
+    color: white;
 }
 
 .btn__controller{
@@ -162,7 +166,6 @@ p{
     flex-direction: column;
     gap: 20px;
     list-style: none;
-    border: 1px solid black;
     padding: 0;
     margin: 0;
 
@@ -177,10 +180,17 @@ p{
         &.selected{
             font-weight: bold;
             color: green;
+            background: rgba(0, 0, 0, 0.5);
         }
 
         &.disabled{
             color: silver;
+
+            &:hover{
+                background: none;
+                cursor: no-drop;
+                color: white;
+            }
         }
     }
 }

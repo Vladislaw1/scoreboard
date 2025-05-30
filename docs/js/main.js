@@ -1,23 +1,21 @@
-import {state, setState, initialState} from './state.js';
+import {state, setState} from './state.js';
 import { initUI, updateDisplay,renderTeamList } from './ui.js';
 import {
     handleBroadcast,
-    requestCount,
-    requestParty,
-    requestSelectedTeams,
     subscribe,
     unsubscribe
 } from './broadcast.js';
 
-import { selectTeam } from './selectTeam.js';
 
 import * as Timer from './timer.js';
 import * as Counter from './counter.js';
+import {generatorId, readImageAsBase64} from "./utils.js";
+import {addTeam} from "./db.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     initUI();
     updateDisplay(state)
-    renderTeamList(selectTeam);
+    renderTeamList();
 
     unsubscribe(handleBroadcast);
 
@@ -66,6 +64,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('newMatch')?.addEventListener('click', () => { Counter.resetAll(); updateDisplay(state); });
 
+    document.getElementById('file__team-form')?.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        const imageBase64 = await readImageAsBase64(file)
+
+        const logoInForm = document.getElementById('team-logo-form')
+
+        logoInForm.src = imageBase64;
+    });
+
+    document.getElementById('teamForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const nameInput  = document.getElementById('name__team-form');
+        const fileInput  = document.getElementById('file__team-form');
+
+        const name = nameInput.value;
+        const image = fileInput.files[0];
+
+        const select = null
+
+        if(!image){
+            alert('Please upload a image');
+            return;
+        }
+        const imageBase64 = await readImageAsBase64(image)
+
+        await addTeam({name, image:imageBase64, select});
+
+        document.getElementById('team-logo-form').src = './assets/images/no-image2.png';
+
+        nameInput.value = ''
+        fileInput.value = ''
+
+        alert('Command added to list')
+    })
 })
 
 window.addEventListener('beforeunload', () => {

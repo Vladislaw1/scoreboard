@@ -2,7 +2,7 @@
     /* шрифт мінімум 8rem, максимум 15rem, в ідеалі 20vw */
     --size_number: clamp(8rem, 20vw, 15rem);
     --size_text:   clamp(2rem, 10vw, 6rem);
-    --size_name:   clamp(2rem, 10vw, 4rem);
+    --size_name:   clamp(2rem, 10vw, 3rem);
     --size_time:   clamp(2rem, 5vw, 5rem);
     --gap: 2vw;
     --padding: 1.5vw;
@@ -17,7 +17,7 @@
 body{
     font-family: "WDXL Lubrifont TC", sans-serif;
     font-optical-sizing: auto;
-    background: url("../assets/images/bg/neonovyi-svetlyi-fon3.jpg") no-repeat center;
+    background: url("../assets/images/bg/neonovyi-svetlyi-fon.jpg") no-repeat center;
     background-size: cover;
     color: white;
     display: flex;

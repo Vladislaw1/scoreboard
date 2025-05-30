@@ -1,30 +1,19 @@
-import {Teams} from '../assets/mock/teams.js'
-
 import {state} from './state.js'
+import {getAllTeams} from "./db.js";
+import {generateTeamElement} from "./utils.js";
 
 let els = {}
 
-export function renderTeamList(onSelect) {
+export async function renderTeamList() {
     if (!els.teamList1 || !els.teamList2) return;
+
+    const teams = await getAllTeams()
 
     els.teamList1.textContent = '';
     els.teamList2.textContent = '';
 
-    Teams.forEach(team => {
-        const li = document.createElement('li');
-        li.textContent = team.name;
-        li.dataset.id = team.id;
-        li.addEventListener('click', () => state.team2?.id !== team.id && onSelect(team.id,'team1'));
-        els.teamList1.appendChild(li);
-    });
-
-    Teams.forEach(team => {
-        const li = document.createElement('li');
-        li.textContent = team.name;
-        li.dataset.id = team.id;
-        li.addEventListener('click', () => state.team1?.id !== team.id && onSelect(team.id,'team2'));
-        els.teamList2.appendChild(li);
-    });
+    teams.forEach(team =>  generateTeamElement(team,'team1',els.teamList1));
+    teams.forEach(team =>  generateTeamElement(team,'team2',els.teamList2));
 }
 
 export function initUI() {
@@ -51,8 +40,10 @@ export function initUI() {
 export function updateDisplay(state) {
     const { minutes, seconds, count1, count2, countParty1, countParty2, countParty, pause, team1, team2 } = state;
 
-    if (els.logoTeam1) els.logoTeam1.src = team1?.logo ?? '';
-    if (els.logoTeam2) els.logoTeam2.src = team2?.logo ?? '';
+    console.log({state})
+
+    if (els.logoTeam1) els.logoTeam1.src = team1?.image ?? '';
+    if (els.logoTeam2) els.logoTeam2.src = team2?.image ?? '';
 
     if (els.nameTeam1) els.nameTeam1.textContent = team1?.name ?? '';
     if (els.nameTeam2) els.nameTeam2.textContent = team2?.name ?? '';

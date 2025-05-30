@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Manage</title>
     <link rel="stylesheet" href="css/manage.css"/>
+    <link rel="stylesheet" href="css/forms.css"/>
 </head>
 <body id="body_manage">
     <div class="count__wrapper">
@@ -107,26 +108,46 @@
 
         </div>
 
-        <div class="wrapper__lists">
-            <h3>Вибір команд</h3>
+    </div>
+    <div class="wrapper">
+        <div class="wrapper__controller">
+            <div class="header__block">
+                <p>Вибір команд</p>
+            </div>
 
-            <div class="lists">
-                <div>
-                    <h4>Оберіть першу команду</h4>
-                    <ul id="team-list1" class="party__list">
-                    </ul>
-                </div>
+        <div class="wrapper">
+            <div>
+                <h4>Оберіть першу команду</h4>
+                <ul id="team-list1" class="party__list">
+                </ul>
+            </div>
 
-                <div>
-                    <h4>Оберіть другу команду</h4>
-                    <ul id="team-list2" class="party__list">
-                    </ul>
-                </div>
+            <div>
+                <h4>Оберіть другу команду</h4>
+                <ul id="team-list2" class="party__list">
+                </ul>
             </div>
         </div>
-
     </div>
 
+        <div class="wrapper__controller">
+        <div class="header__block">
+            <p class="caption__controller">Додати команду</p>
+        </div>
+        <form id="teamForm" class="add__team_form">
+            <label for="name__team-form">Назва команди</label>
+            <input id="name__team-form" type="text" placeholder="Введіть назву команди"/>
+
+            <label for="file__team-form">Логотип команди</label>
+            <input id="file__team-form" type="file" placeholder="Введіть назву команди"/>
+
+            <img alt="logo" class="team-logo-form" id="team-logo-form" src="./assets/images/no-image2.png"/>
+
+            <button id="buttonSubmit" type="submit" class="btn__controller">Додати команду</button>
+        </form>
+    </div>
+    </div>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/db.js"></script>
 </body>
 </html>

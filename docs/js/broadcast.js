@@ -82,10 +82,11 @@ export function handleBroadcast(event) {
             state[key] = data.value;
             break;
 
-        case 'PARTY':
-            state[data.id === 'incPartyBtn1' ? 'countParty1' : 'countParty2'] = data.value;
+        case 'PARTY': {
+            const key = data.id === 'incPartyBtn1' || data.id === 'decPartyBtn1' ? 'countParty1' : 'countParty2';
+            state[key] = data.value;
             break;
-
+        }
         case 'NEXT_PARTY':
             state.countParty = data.value;
             break;

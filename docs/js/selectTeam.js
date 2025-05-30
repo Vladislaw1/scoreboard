@@ -1,10 +1,14 @@
 import { state } from './state.js';
 import { updateDisplay } from './ui.js';
 import { postMessage } from "./broadcast.js";
-import { Teams } from '../assets/mock/teams.js';
+import {getAllTeams, updateTeam} from "./db.js";
 
-export const selectTeam = (id,key) => {
-    const team = Teams.find(t => t.id === id);
+export const selectTeam = async (id, key) => {
+    const teams = await getAllTeams()
+
+    const team = teams.find(t => t.id === id);
+
+    await updateTeam(id,key)
 
     if (!team) {
         console.warn(`Team with id=${id} not found`);
